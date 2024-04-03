@@ -1,0 +1,54 @@
+let us consider how many 'one'-s appear in section I: [1, 1000).
+To do so, we divide this section into 3 part;
+I1: [1, 10), I2: [10, 100), and I3: [100, 1000).
+
+In section I1, apparently there is only 1 one.
+In section I2, 'one' appear 8 times; 21, 31, ... , 91.
+Hence #('one' in I1 OR I2) = 9.
+
+In section I3, all the numbers are pronuounced as 'XXX hundred and "2-digit number"'.
+Hence in I3, one appears 10*#('one' in I1 OR I2) + 100, where 100 counts
+the number of ones appear in 'XXX' position.
+After all, 'one' appears 190 times in section I.
+
+Exactly the same logic holds for 'two' to 'nine'.
+-> 'one' to 'nine' appear 190 times.
+
+
+The jobs left are to count the number of 'ten' to 'nineteen', 'twenty' to 'ninety', 'hundred', and 'and'.
+
+Apparently each of 'ten' to 'nineteen' apper only once in section I1 OR I2.
+Hence these 10 words appear 10 times in section I.
+
+Each of 'twenty' to 'ninety' appears 10 times in section I1 OR I2.
+-> These words appear 100 times in section I.
+
+'hundred' and 'and', on the other hand, appear only in section I3.
+Roughly they appear #(I3) = 999 - 99 times but 100, 200, ... , 900 do not contain 'and'.
+-> 'hundred' and 'and' appear 900 and 891 times in section I, respectively.
+
+Here is the summay:
+1. 'one', 'two', ... , 'nine' appear 190 times.
+2. 'ten', 'eleven', ... , 'nineteen' appear 10 times.
+3. 'twenty', 'thirty', ... , 'ninety' appear 100 times.
+4. 'hundred' apprear 900 times.
+5. 'and' appear 891 times.
+
+sum('one' to 'nine') = 3 + 3 + 5 + 4 + 4 + 3 + 5 + 5 + 4 = 36.
+36 * 190 = 6840
+
+sum('ten' to 'nineteen') = 3 + 6 + 6 + 8 + 8 + 7 + 7 + 9 + 8 + 8 = 70
+70 * 10 = 700
+
+sum('twenty' to 'ninety') = 6 + 6 + 5 + 5 + 5 + 7 + 6 + 6 = 46
+46 * 100 = 4600
+
+'hundred' -> 7
+7 * 900 = 6300
+
+'and' -> 3
+3 * 891 = 2673
+
+-> 21113 letters.
+
+Finally by adding 'one thousand' = 3 + 8 = 11, we get 21124.
