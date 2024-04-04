@@ -1,12 +1,15 @@
+## Welcome!!
 Here are my [Project Euler](https://projecteuler.net/about) solutinos.  
 Ohter scripts are to be added.  
 Thanks!  
 
 ![asof 02/Apr/2024](figures/KhaiJP.png)
 
-| Solved probs | C++ | Python | Julia | manual |
+
+## Problems Table
+| Problem No. | C++ | Python | Julia | manual |
 | ------------ | --- | ------ | ----- | ------ |
-| [001](https://projecteuler.net/problem=1) | [001.cpp](\<100/001/001.cpp) | [001.py](\<100/001/001.py) |  |  |
+| [001](https://projecteuler.net/problem=1) | [001.cpp](\<100/001/001.cpp) | [001.py](\<100/001/001.py) | [001.jl](\<100/001/001.jl) |  |
 | [002](https://projecteuler.net/problem=2) | [002.cpp](\<100/002/002.cpp) | [002.py](\<100/002/002.py) |  |  |
 | [003](https://projecteuler.net/problem=3) | [003.cpp](\<100/003/003.cpp) | [003.py](\<100/003/003.py) |  |  |
 | [004](https://projecteuler.net/problem=4) | [004.cpp](\<100/004/004.cpp) | [004.py](\<100/004/004.py) |  |  |
