@@ -32,4 +32,5 @@ Thanks!
 | [021](https://projecteuler.net/problem=21) | [021.cpp](\<100/021/021.cpp) | [021.py](\<100/021/021.py) |  |  |
 | [022](https://projecteuler.net/problem=22) |  | [022.py](\<100/022/022.py) |  |  |
 | [023](https://projecteuler.net/problem=23) |  | [023.py](\<100/023/023.py) |  |  |
+| [024](https://projecteuler.net/problem=24) | [024.cpp](\<100/024/024.cpp) | [024.py](\<100/024/024.py) | [024.jl](\<100/024/024.jl) |  |
 | [067](https://projecteuler.net/problem=67) | [067.cpp](\<100/067/067.cpp) | [067.py](\<100/067/067.py) |  |  |
