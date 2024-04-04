@@ -7,9 +7,9 @@ In section I2, 'one' appear 8 times; 21, 31, ... , 91.
 Hence #('one' in I1 OR I2) = 9.
 
 In section I3, all the numbers are pronuounced as 'XXX hundred and "2-digit number"'.
-Hence in I3, one appears 10*#('one' in I1 OR I2) + 100, where 100 counts
+Hence in I3, one appears 9*#('one' in I1 OR I2) + 100, where 100 counts
 the number of ones appear in 'XXX' position.
-After all, 'one' appears 190 times in section I.
+After all, 'one' appears 1 + 8 + 181 = 190 times in section I.
 
 Exactly the same logic holds for 'two' to 'nine'.
 -> 'one' to 'nine' appear 190 times.
