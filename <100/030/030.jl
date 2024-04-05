@@ -11,7 +11,7 @@ function is_ok(n:: Int):: Bool
   return l |> sum |> equiv_n
 end
 
-function main():: Nothing
+@time function main():: Nothing
   a = ( n for n ∈ 2:upper_limit if is_ok(n) )
   a |> sum |> println
   return nothing
