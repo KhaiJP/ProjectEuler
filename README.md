@@ -1,6 +1,6 @@
 ## Welcome!!
 Here are my [Project Euler](https://projecteuler.net/about) solutinos.  
-Ohter scripts are to be added.  
+Other scripts are to be added.  
 Thanks!  
 
 ![asof 02/Apr/2024](figures/KhaiJP.png)
@@ -33,4 +33,5 @@ Thanks!
 | [022](https://projecteuler.net/problem=22) |  | [022.py](\<100/022/022.py) |  |  |
 | [023](https://projecteuler.net/problem=23) |  | [023.py](\<100/023/023.py) |  |  |
 | [024](https://projecteuler.net/problem=24) | [024.cpp](\<100/024/024.cpp) | [024.py](\<100/024/024.py) | [024.jl](\<100/024/024.jl) |  |
+| [025](https://projecteuler.net/problem=25) | [025.cpp](\<100/025/025.cpp) | [025.py](\<100/025/025.py) | [025.jl](\<100/025/025.jl) |  |
 | [067](https://projecteuler.net/problem=67) | [067.cpp](\<100/067/067.cpp) | [067.py](\<100/067/067.py) |  |  |
