@@ -1,4 +1,4 @@
-@time function main()
+function main()
   # the Fibonacci seq diverges O(1.6^n) (1.6 is rough value of the golden ratio).
   # log10(1.6) ~ 0.2 -> Fibonacci would achieve 1000-digits around 5000, at least no greater than 100,000
   target_digit:: Int = 1000
@@ -19,4 +19,4 @@
   end
 end
 
-main()
+@time main()

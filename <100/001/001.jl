@@ -7,4 +7,4 @@ function main():: Nothing
 end
 
 
-main()
+@time main()

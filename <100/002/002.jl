@@ -1,10 +1,9 @@
-upper_limit = 4000000
-
-@time function main():: Nothing
+function main():: Nothing
   Fib_2:: Int = 1
   Fib_1:: Int = 2
   Fib::Int = 0
   answer:: Int = Fib_1
+  upper_limit:: Int = 4000000
 
   while true
     Fib = Fib_1 + Fib_2
@@ -21,4 +20,4 @@ upper_limit = 4000000
   return nothing
 end
 
-main()
+@time main()

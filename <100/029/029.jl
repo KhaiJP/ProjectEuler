@@ -1,4 +1,4 @@
-@time function main():: Nothing
+function main():: Nothing
   S:: Set{BigInt} = Set()
   for a ∈ 2:100
     for b ∈ 2:100
@@ -12,4 +12,4 @@
   return nothing
 end
 
-main()
+@time main()
