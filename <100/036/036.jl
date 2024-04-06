@@ -1,13 +1,6 @@
 string_0b(n:: Int):: String = string(n, base=2)
 is_palindrome(s:: String):: Bool = reverse(s) == s
-
-function is_ok(n:: Int):: Bool
-  if n |> string |> is_palindrome
-    return n |> string_0b |> is_palindrome
-  else
-    return false
-  end
-end
+is_ok(n:: Int):: Bool = n |> string |> is_palindrome ? n |> string_0b |> is_palindrome : false
 
 function main()::Nothing
   upper_limit:: Int = 10^6-1
