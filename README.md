@@ -11,7 +11,7 @@ Thanks!
 | ------------ | --- | ------ | ----- | ------ |
 | [001](https://projecteuler.net/problem=1) | [001.cpp](\<100/001/001.cpp) | [001.py](\<100/001/001.py) | [001.jl](\<100/001/001.jl) |  |
 | [002](https://projecteuler.net/problem=2) | [002.cpp](\<100/002/002.cpp) | [002.py](\<100/002/002.py) | [002.jl](\<100/002/002.jl) |  |
-| [003](https://projecteuler.net/problem=3) | [003.cpp](\<100/003/003.cpp) | [003.py](\<100/003/003.py) |  |  |
+| [003](https://projecteuler.net/problem=3) | [003.cpp](\<100/003/003.cpp) | [003.py](\<100/003/003.py) | [003.jl](\<100/003/003.jl) |  |
 | [004](https://projecteuler.net/problem=4) | [004.cpp](\<100/004/004.cpp) | [004.py](\<100/004/004.py) |  |  |
 | [005](https://projecteuler.net/problem=5) | [005.cpp](\<100/005/005.cpp) | [005.py](\<100/005/005.py) |  |  |
 | [006](https://projecteuler.net/problem=6) | [006.cpp](\<100/006/006.cpp) | [006.py](\<100/006/006.py) |  |  |
