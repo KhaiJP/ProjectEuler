@@ -10,7 +10,7 @@ end
 
 function solve(upper_limit:: Int):: Int
   for n ∈ upper_limit:-1:1
-    if ( n |> isprime |> ! ) && ( n |> is_pandigital )
+    if ( n |> isprime ) && ( n |> is_pandigital )
       return n
     end
   end
