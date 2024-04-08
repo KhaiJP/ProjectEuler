@@ -21,6 +21,7 @@ function solve(arr:: Array{Int}):: String
       if are_permutations(arr[i], arr[j]) |> !
         continue
       end
+      
       p:: Int = 2arr[j]-arr[i]
       if are_permutations(arr[i], p) && isprime(p)
         answer:: String = string(arr[i]) * string(arr[j]) * string(p)
