@@ -25,7 +25,7 @@ Thanks!
 | [014](https://projecteuler.net/problem=14) | [014.cpp](\<100/014/014.cpp) | [014.py](\<100/014/014.py) |                            |                            | |
 | [015](https://projecteuler.net/problem=15) | [015.cpp](\<100/015/015.cpp) | [015.py](\<100/015/015.py) |                            |                            | |
 | [016](https://projecteuler.net/problem=16) | [016.cpp](\<100/016/016.cpp) | [016.py](\<100/016/016.py) |                            |                            | |
-| [017](https://projecteuler.net/problem=17) |                              |                            |                            | <!-- [017.hs](\<100/017/017.hs)--> [017.txt](\<100/017/017.txt) |
+| [017](https://projecteuler.net/problem=17) |                              |                            |                            | <!-- [017.hs](\<100/017/017.hs)--> | [017.txt](\<100/017/017.txt) |
 | [018](https://projecteuler.net/problem=18) | [018.cpp](\<100/018/018.cpp) | [018.py](\<100/018/018.py) |  |                            | |
 | [019](https://projecteuler.net/problem=19) | [019.cpp](\<100/019/019.cpp) | [019.py](\<100/019/019.py) |  |                            | |
 | [020](https://projecteuler.net/problem=20) | [020.cpp](\<100/020/020.cpp) | [020.py](\<100/020/020.py) |  |                            | |
@@ -36,7 +36,7 @@ Thanks!
 | [025](https://projecteuler.net/problem=25) | [025.cpp](\<100/025/025.cpp) | [025.py](\<100/025/025.py) | [025.jl](\<100/025/025.jl) |                            | |
 | [026](https://projecteuler.net/problem=26) | [026.cpp](\<100/026/026.cpp) | <!-- [025.py](\<100/025/025.py) --> | <!-- [025.jl](\<100/025/025.jl) --> |                            | |
 | [027](https://projecteuler.net/problem=27) | [027.cpp](\<100/027/027.cpp) | <!-- [027.py](\<100/027/027.py) --> | <!-- [027.jl](\<100/027/027.jl) --> |                            | |
-| [028](https://projecteuler.net/problem=28) | <!-- [028.cpp](\<100/028/028.cpp) --> | <!-- [028.py](\<100/028/028.py) --> | <!-- [028.jl](\<100/028/028.jl) --> | [028.md](\<100/028/028.md)                           | |
+| [028](https://projecteuler.net/problem=28) | <!-- [028.cpp](\<100/028/028.cpp) --> | <!-- [028.py](\<100/028/028.py) --> | <!-- [028.jl](\<100/028/028.jl) --> |                           | [028.md](\<100/028/028.md) |
 | [029](https://projecteuler.net/problem=29) | <!-- [029.cpp](\<100/029/029.cpp) --> | [029.py](\<100/029/029.py) | [029.jl](\<100/029/029.jl) |                            | |
 | [030](https://projecteuler.net/problem=30) | [030.cpp](\<100/030/030.cpp) | [030.py](\<100/030/030.py) | [030.jl](\<100/030/030.jl) |                            | |
 | [031](https://projecteuler.net/problem=31) | [031.cpp](\<100/031/031.cpp) | [031.py](\<100/031/031.py) | [031.jl](\<100/031/031.jl) |                            | |
