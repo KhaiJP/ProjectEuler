@@ -14,7 +14,7 @@ Thanks!
 | [003](https://projecteuler.net/problem=3) | [003.cpp](\<100/003/003.cpp) | [003.py](\<100/003/003.py) | [003.jl](\<100/003/003.jl) | [003.hs](\<100/003/003.hs) | |
 | [004](https://projecteuler.net/problem=4) | [004.cpp](\<100/004/004.cpp) | [004.py](\<100/004/004.py) | [004.jl](\<100/004/004.jl) | [004.hs](\<100/004/004.hs) | |
 | [005](https://projecteuler.net/problem=5) | [005.cpp](\<100/005/005.cpp) | [005.py](\<100/005/005.py) | [005.jl](\<100/005/005.jl) | [005.hs](\<100/005/005.hs) | |
-| [006](https://projecteuler.net/problem=6) | [006.cpp](\<100/006/006.cpp) | [006.py](\<100/006/006.py) | [006.jl](\<100/006/006.jl) |                            | |
+| [006](https://projecteuler.net/problem=6) | [006.cpp](\<100/006/006.cpp) | [006.py](\<100/006/006.py) | [006.jl](\<100/006/006.jl) | [006.hs](\<100/006/006.hs) | |
 | [007](https://projecteuler.net/problem=7) | [007.cpp](\<100/007/007.cpp) | [007.py](\<100/007/007.py) | [007.jl](\<100/007/007.jl) |                            | |
 | [008](https://projecteuler.net/problem=8) | [008.cpp](\<100/008/008.cpp) | [008.py](\<100/008/008.py) | [008.jl](\<100/008/008.jl) |                            | |
 | [009](https://projecteuler.net/problem=9) | [009.cpp](\<100/009/009.cpp) | [009.py](\<100/009/009.py) | [009.jl](\<100/009/009.jl) |                            | |
