@@ -21,7 +21,7 @@ Thanks!
 | [010](https://projecteuler.net/problem=10) | [010.cpp](\<100/010/010.cpp) | [010.py](\<100/010/010.py) | [010.jl](\<100/010/010.jl) | [010.hs](\<100/010/010.hs) | |
 | [011](https://projecteuler.net/problem=11) | [011.cpp](\<100/011/011.cpp) | [011.py](\<100/011/011.py) |                            |                            | |
 | [012](https://projecteuler.net/problem=12) | [012.cpp](\<100/012/012.cpp) | [012.py](\<100/012/012.py) | [012.jl](\<100/012/012.jl) | [012.hs](\<100/012/012.hs) | |
-| [013](https://projecteuler.net/problem=13) | [013.cpp](\<100/013/013.cpp) | [013.py](\<100/013/013.py) |                            |                            | |
+| [013](https://projecteuler.net/problem=13) | [013.cpp](\<100/013/013.cpp) | [013.py](\<100/013/013.py) | [013.jl](\<100/013/013.jl) | [013.hs](\<100/013/013.hs) | |
 | [014](https://projecteuler.net/problem=14) | [014.cpp](\<100/014/014.cpp) | [014.py](\<100/014/014.py) |                            |                            | |
 | [015](https://projecteuler.net/problem=15) | [015.cpp](\<100/015/015.cpp) | [015.py](\<100/015/015.py) |                            |                            | |
 | [016](https://projecteuler.net/problem=16) | [016.cpp](\<100/016/016.cpp) | [016.py](\<100/016/016.py) |                            |                            | |
