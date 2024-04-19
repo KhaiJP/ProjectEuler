@@ -29,7 +29,7 @@ Thanks!
 | [018](https://projecteuler.net/problem=18) | [018.cpp](\<100/018/018.cpp) | [018.py](\<100/018/018.py) |  |                            | |
 | [019](https://projecteuler.net/problem=19) | [019.cpp](\<100/019/019.cpp) | [019.py](\<100/019/019.py) |  |                            | |
 | [020](https://projecteuler.net/problem=20) | [020.cpp](\<100/020/020.cpp) | [020.py](\<100/020/020.py) | [020.jl](\<100/020/020.jl) | [020.hs](\<100/020/020.hs) | |
-| [021](https://projecteuler.net/problem=21) | [021.cpp](\<100/021/021.cpp) | [021.py](\<100/021/021.py) |  |                            | |
+| [021](https://projecteuler.net/problem=21) | [021.cpp](\<100/021/021.cpp) | [021.py](\<100/021/021.py) | [021.jl](\<100/021/021.jl) | [021.hs](\<100/021/021.hs) | |
 | [022](https://projecteuler.net/problem=22) |  | [022.py](\<100/022/022.py) |  |                            | |
 | [023](https://projecteuler.net/problem=23) |  | [023.py](\<100/023/023.py) |  |                            | |
 | [024](https://projecteuler.net/problem=24) | [024.cpp](\<100/024/024.cpp) | [024.py](\<100/024/024.py) | [024.jl](\<100/024/024.jl) |                            | |
