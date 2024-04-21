@@ -1,13 +1,6 @@
 using Primes
 
 
-function quadraticGenerator(a:: Int, b:: Int)
-  f(n:: Int):: Int = n^2 + a*n + b
-  return f
-  # return n -> n^2 + a*n + b
-end
-
-
 function findLength(f):: Int
   # sufficiently big number
   upper_limit = 10^8
@@ -22,7 +15,7 @@ end
 
 
 function primeLength(a:: Int, b:: Int):: Int
-  f = quadraticGenerator(a, b)
+  f = n -> n^2 + a*n + b
   l = findLength(f)
   return l
 end

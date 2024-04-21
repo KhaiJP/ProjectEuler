@@ -2,10 +2,6 @@ import sympy
 from typing import Callable
 
 
-def quadraticGenerator(a: int, b: int) -> Callable[[int], int]:
-    return lambda n: n**2 + a*n + b
-
-
 def findLength(f: Callable[[int], int]) -> int:
     # sufficiently big number
     upper_limit = 10**8
@@ -16,7 +12,7 @@ def findLength(f: Callable[[int], int]) -> int:
 
 
 def primeLength(a: int, b: int) -> int:
-    f = quadraticGenerator(a, b)
+    f = lambda n: n**2 + a*n + b
     l = findLength(f)
     return l
 
