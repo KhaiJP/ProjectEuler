@@ -1,49 +1,22 @@
 #include<iostream>
-#include<set>
-#include<time.h>
+#include<numeric>
 using namespace std;
-using ll = int64_t;
-
-ll factorial(ll n){
-  if(n <= 1) return 1;
-  else return n * factorial(n-1);
-}
-
-
-ll digitFactorialSum(ll n){
-  if(n == 0) return 0;
-  ll r = factorial(n%10);
-  return r + digitFactorialSum(n/10);
-}
-
-
-ll evalLoopSize(ll n){
-  set<ll> S;
-  while(S.count(n) == 0){
-    S.insert(n);
-    n = digitFactorialSum(n);
-  }
-
-  return S.size();
-}
 
 
 int main(){
-  clock_t start = clock();
+  const int max_d = 12000;
+  int answer = 0;
 
-  ll upper_limit = 1e6;
-  ll answer = 0;
-
-  // naive brute-force without memorization; 10 sec to execute
-  for(ll n = 1; n < upper_limit; ++n){
-    ll loop_size = evalLoopSize(n);
-    answer += loop_size == 60;
+  // naive brute-force;
+  for(int d = max_d; d > 2; --d){
+    // n/d < 1/2  <==> n < d/2  ==> max_n = d/2 - 1if d%2 == 0 else d/2.
+    int n = d/2 - 1 + (d%2);
+    while(3*n > d){
+      answer += gcd(n, d) == 1;
+      --n;
+    }
   }
 
-  clock_t end = clock();
-  const double time = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-
   cout << answer << endl;
-  cout << time << " sec" << endl;
   return 0;
 }
