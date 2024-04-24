@@ -41,6 +41,7 @@ ll findPeriod_(vector<TP> &V, TP t){
 
 
 ll findPeriod(TP tk, vector<TP> &V, set<TP> &S){
+  // check supplemental.md to see the meanings of variables and the strategy.
   auto [nk, bk, dk] = tk;
   ll sk = findSqrt((ll)0, nk, max_binary) + bk;
   ll ak = sk / dk;
