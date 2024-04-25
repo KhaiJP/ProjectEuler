@@ -1,6 +1,7 @@
 from sympy.ntheory.continued_fraction import continued_fraction_iterator as itr_
 from sympy.ntheory.continued_fraction import continued_fraction_convergents as convergents
 from sympy import E, fraction
+import time
 
 
 def digit_sum(n: int) -> int:
@@ -19,5 +20,9 @@ def main() -> int:
 
 
 if __name__ == '__main__':
+    start = time.time()
     answer = main()
+    elapsed = time.time() - start
+
     print(answer)
+    print(f'{elapsed} sec')
