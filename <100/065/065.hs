@@ -23,17 +23,18 @@ makeE = makeE' 0
 makeE' :: Integer -> Integer -> [Integer]
 makeE' l n
     | n == 0           = []
-    | l == 0           = 2 : makeE' (l+1) (n-1)
-    | l == 1           = 1 : makeE' (l+1) (n-1)
-    | l == 2           = 2 : makeE' (l+1) (n-1)
-    | mod (l-3) 3 == 2 = k : makeE' (l+1) (n-1)
-    | otherwise        = 1 : makeE' (l+1) (n-1)
+    | l == 0           = 2 : next
+    | l == 1           = 1 : next
+    | l == 2           = 2 : next
+    | mod (l-3) 3 == 2 = k : next
+    | otherwise        = 1 : next
     where
-        k = 2 * (div (l-3) 3 + 2)
+        next = makeE' (l+1) (n-1) 
+        k    = 2 * (div (l-3) 3 + 2)
 
 digitSum :: Integer -> Integer
 digitSum 0 = 0
-digitSum n = a + digitSum m
+digitSum n = r + digitSum m
     where
-        a = mod n 10
+        r = mod n 10
         m = div n 10
