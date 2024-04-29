@@ -14,8 +14,9 @@ solvePellEq n = (x, y)
         (x, y)   = if x'^2 - n*y'^2 == 1 then (x', y') else (-1, 0)
         x'       = numerator approxCF
         y'       = denominator approxCF
-        approxCF = if odd period then continuedFractionApproximate (2*period-1) cf
-                                  else continuedFractionApproximate period cf
+        approxCF = if odd period 
+                     then continuedFractionApproximate (2*period-1) cf
+                     else continuedFractionApproximate period cf
         period   = periodQI q
         cf       = qiToContinuedFraction q
         q        = qi 0 1 n 1
