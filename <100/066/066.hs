@@ -9,7 +9,7 @@ main = print $ maximumAt answers
 answers = [x | d <- [0..upperLimit], let (x, _) = solvePellEq d]
 
 solvePellEq :: Integer -> (Numerator, Denominator)
-solvePellEq n = (x', y')
+solvePellEq n = (x, y)
     where
         (x, y)   = if x'^2 - n*y'^2 == 1 then (x', y') else (-1, 0)
         x'       = numerator approxCF
