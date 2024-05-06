@@ -19,7 +19,7 @@ solve' n s  = solve' m cs
     cs = tail s
 
 
--- trim \n char. "0b123\nx456\ncd789" -> "0123456789"
+-- "0b123\nx456\ncd789" -> "0123456789"
 extractDigits :: String -> String
 extractDigits [] = []
 extractDigits (c:cs)
