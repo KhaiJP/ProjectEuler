@@ -2,7 +2,7 @@ import Data.Numbers.Primes
 
 
 main :: IO ()
-main = print $ sum . take target $ [n | n <- [11..], all isPrime (family n)]
+main = print $ sum . take target $ [n | n <- [11..], all isPrime $ family n]
 
 
 family :: Int -> [Int]
