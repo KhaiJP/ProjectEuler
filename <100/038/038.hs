@@ -2,17 +2,17 @@ import Data.List
 
 
 main :: IO ()
-main = print $ head [read s :: Int| n <- [9876,9875..], let s = makeCycleCat n, isOneToNinePandigital s]
+main = print $ head [read s :: Int| n <- [9876,9875..], let s = makeProdCat n, isOneToNinePandigital s]
 
 
-makeCycleCat :: Int -> String
-makeCycleCat = makeCycleCat' "" 1
+makeProdCat :: Int -> String
+makeProdCat = makeProdCat' "" 1
 
 
-makeCycleCat' :: String -> Int -> Int -> String
-makeCycleCat' base streak target
+makeProdCat' :: String -> Int -> Int -> String
+makeProdCat' base streak target
     | enoughLen = base
-    | otherwise = makeCycleCat' next streak' target
+    | otherwise = makeProdCat' next streak' target
     where
         enoughLen = length base >= 9
         next      = base ++ multiple
