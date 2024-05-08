@@ -21,11 +21,16 @@ countPerimeters mp a b
         a'  = a + 1
         b'  = b + 1
         c   = mySqrt $ a^2 + b^2
-        mp' = if M.member perimeter mp 
-                then M.update (\x -> Just (x+1)) perimeter mp
-                else M.insert perimeter 1 mp 
+        mp' = update' (\x -> Just (x+1)) perimeter mp
         perimeter = a + b + c
         enjoysCondition = perimeter <= 1000 && a^2+b^2 == c^2
+
+
+-- if key is member of given Map, increment the corresponding value, else initialize by 1
+update' :: (Ord a, Integral b) => (b -> Maybe b) -> a -> M.Map a b -> M.Map a b
+update' f key mp = if M.member key mp
+                    then M.update f key mp
+                    else M.insert key 1 mp
 
 
 -- find the key of Map whose value is the maximum among the values
