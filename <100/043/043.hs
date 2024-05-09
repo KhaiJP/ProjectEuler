@@ -2,7 +2,7 @@ import Data.List
 
 
 main :: IO ()
-main = print $ sum . map stringToInt . filter check $ permutations pand
+main = print $ sum . map stringToInt . filter check $ pandigitals
 
 
 check :: String -> Bool
