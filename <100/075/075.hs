@@ -15,9 +15,9 @@ wireLengthCount = count 1 1 M.empty
 
 count :: Int -> Int -> Map -> Map
 count n m mp
+    | hasReached  = mp
     | n <= m      = count (n+1) 1 mp
     | badTriangle = count n (m+1) mp
-    | hasReached  = mp
     | otherwise   = count n (m+1) mp'
     where
         badTriangle    = isNothing trp
