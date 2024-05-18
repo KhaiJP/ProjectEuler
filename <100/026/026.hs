@@ -1,6 +1,7 @@
 import Data.List
 
-main = print $ fmap (+1) . maximumAt $ [ length $ findPeriod n | n <- [1..upperLimit]]
+main :: IO ()
+main = print $ (1+) <$> maximumAt [ length $ findPeriod n | n <- [1..upperLimit]]
 
 findPeriod :: Integral t => t -> [t]
 findPeriod = findPeriod' 1 [] 
