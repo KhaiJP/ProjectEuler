@@ -1,5 +1,5 @@
-import Math.NumberTheory.ArithmeticFunctions
-import Data.List
+import Math.NumberTheory.ArithmeticFunctions ( totient )
+import Data.List ( elemIndex, sort )
 
 
 main :: IO ()
