@@ -51,13 +51,18 @@ bool truncatable(int n, int (*direc)(int)){
 
 int main(){
   Eratosthenes();
-  int answer = 0;
+  int answer = 0, target = 11, cnt = 0;
   for(int i = 11; i < UPPER_LIMIT; ++i){
     if(truncatable(i, clip_right) && truncatable(i, clip_left)){
       answer += i;
+      ++cnt;
+      if(cnt == target){
+        cout << answer << endl;
+        return 0;
+      }
     }
   }
 
-  cout << answer << endl;
+  cout << "only " << cnt << " both-truncatable primes have been found" << endl;
   return 0;
 }
