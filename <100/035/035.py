@@ -27,7 +27,8 @@ def all_rotations_primes(n: int) -> bool:
 
 
 def main() -> int:
-    primes = sympy.primerange(10**6)
+    upper_limit = 10**6
+    primes = sympy.primerange(upper_limit)
     bools  = map(all_rotations_primes, primes)
     answer = sum(bools)
     return answer

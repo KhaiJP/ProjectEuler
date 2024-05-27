@@ -21,11 +21,17 @@ function rotates(n:: Int):: Array{Int}
 end
 
 
+function all_rotates_primes(n:: Int):: Bool
+  rotations = rotates(n)
+  bools     = map(isprime, rotations)
+  return bools |> all
+end
+
+
 function main():: Nothing
   upper_limit :: Int = 10^6
   ps    = primes(upper_limit)
-  rts   = map(p -> rotates(p), ps)
-  bools = map(rt -> all(map(isprime, rt)), rts)
+  bools = map(all_rotates_primes, ps)
   bools |> count |> println
 
   return nothing
