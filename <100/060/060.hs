@@ -39,12 +39,8 @@ allPrimes (p:ps) q
     | not . isPrime $ qp = False
     | otherwise = allPrimes ps q
     where
-        pq = concat' p q
-        qp = concat' q p
-
-
-concat' :: Int -> Int -> Int
-concat' p q = read $ shows p $ show q
+        pq = read $ shows p $ show q
+        qp = read $ shows q $ show p
 
 
 upperLimit :: Int
