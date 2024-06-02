@@ -7,7 +7,7 @@ main :: IO ()
 main = do
   handle   <- openFile filename ReadMode
   contents <- hGetContents handle
-  print $ length . filter isTriangle . map (convert . extractCapitals) . splitComma $ contents
+  print . length . filter isTriangle . map (convert . extractCapitals) . splitComma $ contents
 
 
 -- make "SKY" to 55 = 19 + 11 + 25
