@@ -10,9 +10,9 @@ main = print . sum . toUniqPSN $ logs
 record :: Int -> Int -> [Int] -> Map -> Map
 record p s xs m
     | k > maxK  = m
-    | otherwise = foldl foldFunc m_ $ takeWhile smallEnough candidates
+    | otherwise = foldl foldFunc m' $ takeWhile smallEnough candidates
     where
-        m_ = if null xs
+        m' = if null xs
                 then m
                 else M.update (\a -> Just (min a p)) k m
         k  = length xs + d
@@ -22,7 +22,7 @@ record p s xs m
                 else head xs
 
         candidates    = dropWhile (< h) [2..maxK]
-        foldFunc m' n = record (p*n) (s+n) (n:xs) m'
+        foldFunc m'' n = record (p*n) (s+n) (n:xs) m''
         smallEnough x = p*x < 2*maxK
 
 
