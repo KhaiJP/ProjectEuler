@@ -4,7 +4,7 @@ type Map = M.Map Int Int
 
 
 main :: IO ()
-main = print . sum . toUniqPSN $ logs
+main = print . sum . toUniqPSNs $ logs
 
 
 record :: Int -> Int -> [Int] -> Map -> Map
@@ -27,8 +27,8 @@ record p s xs m
 
 
 -- PSN: product-sum number
-toUniqPSN :: Map -> [Int]
-toUniqPSN = S.toList . S.fromList . map snd . M.toList
+toUniqPSNs :: Map -> [Int]
+toUniqPSNs = S.toList . S.fromList . map snd . M.toList
 
 
 -- key: k, value: minimal PSN
