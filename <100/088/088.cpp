@@ -23,7 +23,7 @@ int prod(vector<int> &v){
 }
 
 
-void regist(vector<int> &v){
+void register_(vector<int> &v){
   int p = prod(v), s = sum(v);
   int delta = p - s;
   if(delta < 0) return ;
@@ -41,7 +41,7 @@ void dfs(vector<int> &v){
 
   int r = 2;
   if(tmp_size > 0){
-    regist(v);
+    register_(v);
     int r = v.back();
   }
 
