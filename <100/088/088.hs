@@ -10,7 +10,7 @@ main = print . sum . toUniqPSNs $ logs
 record :: Int -> Int -> [Int] -> Map -> Map
 record p s xs m
     | k > maxK  = m
-    | otherwise = foldl foldFunc m' $ takeWhile smallEnough candidates
+    | otherwise = foldl foldFunc m' $ takeWhile smallEnough [h..maxK]
     where
         m' = if null xs
                 then m
@@ -21,9 +21,8 @@ record p s xs m
                 then 2
                 else head xs
 
-        candidates    = dropWhile (< h) [2..maxK]
         foldFunc m'' n = record (p*n) (s+n) (n:xs) m''
-        smallEnough x = p*x < 2*maxK
+        smallEnough x  = p*x < 2*maxK
 
 
 -- PSN: product-sum number
