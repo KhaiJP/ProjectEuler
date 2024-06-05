@@ -12,9 +12,7 @@ record p s xs m
     | k > maxK  = m
     | otherwise = foldl foldFunc m' $ takeWhile smallEnough [h..maxK]
     where
-        m' = if null xs
-                then m
-                else M.update (\a -> Just (min a p)) k m
+        m' = M.update (\a -> Just (min a p)) k m
         k  = length xs + d
         d  = p - s
         h  = if null xs
