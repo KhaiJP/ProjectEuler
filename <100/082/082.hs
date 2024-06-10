@@ -35,27 +35,27 @@ adjointPairs = l0 ++ l1
 dijkstra :: WeightMap -> Node -> DistMap
 dijkstra wmap s = dijkstra' wmap q visited dmap
     where
-        q = S.singleton (0, s)
+        q       = S.singleton (0, s)
         visited = S.empty
-        dmap = M.fromList $ (s, 0) : [((r, c), 10^9) | r <- [1..size'], c <- [1..size']]
+        dmap    = M.fromList $ (s, 0) : [((r, c), 10^9) | r <- [1..size'], c <- [1..size']]
 
 
 dijkstra' :: WeightMap -> PQueue -> Visited -> DistMap -> DistMap
 dijkstra' wmap q visited dmap
-    | null q = dmap
+    | null q                  = dmap
     | S.member (r, c) visited = dijkstra' wmap q'' visited dmap
-    | otherwise = dijkstra' wmap q' visited' dmap'
+    | otherwise               = dijkstra' wmap q' visited' dmap'
     where
-        Just top = S.lookupGE (-1, (0, 0)) q
+        Just top    = S.lookupGE (-1, (0, 0)) q
         (d, (r, c)) = top
-        q''  = S.delete top q
+        q''         = S.delete top q
         (q', dmap') = update' q'' dmap (r, c) nexts
-        visited' = S.insert (r, c) visited
-        nexts = makeNexts (r, c) wmap
+        visited'    = S.insert (r, c) visited
+        nexts       = makeNexts (r, c) wmap
 
 
 makeNexts :: Node -> WeightMap -> [(Weight, Node)]
-makeNexts rc wmap     = map formatter . filter isMember $ l
+makeNexts rc wmap = map formatter . filter isMember $ l
     where
         formatter rc' = (wmap M.! (rc, rc'),  rc')
         isMember  rc' = M.member (rc, rc') wmap
