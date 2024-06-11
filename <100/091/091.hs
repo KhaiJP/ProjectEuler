@@ -2,6 +2,7 @@ import Data.List ( sort )
 import Data.List.Unique ( uniq )
 type Vect = (Int, Int)
 
+
 main :: IO ()
 main = print . length . filter (isRightTriangle . toThreeVect) . uniq . sort $ triangles
 
