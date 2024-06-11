@@ -21,13 +21,13 @@ triangles = do
 isRightTriangle :: (Vect, Vect, Vect) -> Bool
 isRightTriangle triangle = isTriangle && isRight
     where
-        l2s = sort . map sqrLength . castToList $ triangle
-        isTriangle = head l2s /= 0
-        isRight    = (==) (sum l2s) $ (*) 2 (last l2s)
+        sqLengths  = sort . map sqrLength . castToList $ triangle
+        isTriangle = head sqLengths /= 0
+        isRight    = (==) (sum sqLengths) $ (*) 2 (last sqLengths)
 
 
-sqrLength :: Vect -> Int
-sqrLength v = v `dotVect` v
+sqLength :: Vect -> Int
+sqLength v = v `dotVect` v
 
 
 castToList :: (Vect, Vect, Vect) -> [Vect]
