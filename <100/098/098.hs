@@ -18,14 +18,19 @@ main = do
     print . maximum . map (check . second S.toList) . toContentsGrp $ contents
 
 
+-- toContentGrp "\"CARE\",\"RACE\"" -> [ ("ACER", ["CARE", "RACE"]) ]
 toContentsGrp :: String -> [(String, S.Set String)]
 toContentsGrp s = M.toList . foldl update' M.empty $ formatText s
 
 
+-- formatText "\"CARE\",\"RACE\"" -> ["CARE", "RACE"]
+-- original text is comma separated and each word is enclosed by "~" such as "CARE"
 formatText :: String -> [String]
 formatText = map extractCapitals . splitComma
 
 
+-- check' "ACER" ["CARE", "RACE"] -> Just 9216
+-- (sorted, [word])-> sort word == sorted 
 check :: (String, [String]) -> Maybe Int
 check (_, [ ]) = Nothing
 check (_, [x]) = Nothing
@@ -36,19 +41,16 @@ check (r,  xs) = maximum [max' r perm comb | comb <- combs, perm <- perms]
         l = length r
 
 
+-- max' "ACER" "2169" ["CARE", "RACE"] -> Just 9216
 max' :: String -> String -> [String] -> Maybe Int
 max' r perm strs = if isJust . sequenceA $ maybeInts
                     then maximum maybeInts 
                     else Nothing
     where
+        -- make ["WORDS"] to [Just num or Nothing]. "WORD" become Just num iff converted num is squared
+        maybeInts = map ((toMI >=> toMaybeSquared) . map (convertor M.!)) strs
         convertor = M.fromList $ zip r perm
-        strs' = map (map (convertor M.!)) strs
-        maybeInts = map (toMI >=> toMaybeSquared) strs'
         toMI s_ = if head s_ == '0' then Nothing else Just . read $ s_
-
-convert :: M.Map Char Char -> String -> String
-convert m = map (m M.!)
-
 
 
 ----------------------- supplemental -----------------------
