@@ -1,4 +1,4 @@
-import Control.Monad ( (>=>) )
+import Control.Monad ( (<=<) )
 import Data.Maybe ( isJust )
 import Data.Bifunctor ( second )
 import System.IO ( hGetContents, openFile, IOMode(ReadMode) )
@@ -48,7 +48,7 @@ max' r perm strs = if isJust . sequenceA $ maybeInts
                     else Nothing
     where
         -- make ["WORDS"] to [Just num or Nothing]. "WORD" become Just num iff converted num is squared
-        maybeInts = map ((toMI >=> toMaybeSquared) . map (convertor M.!)) strs
+        maybeInts = map ((toMaybeSquared <=< toMI) . map (convertor M.!)) strs
         convertor = M.fromList $ zip r perm
         toMI s_ = if head s_ == '0' then Nothing else Just . read $ s_
 
