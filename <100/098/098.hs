@@ -15,12 +15,12 @@ main = do
     handle   <- openFile filename ReadMode
     contents <- hGetContents handle
     -- naive solution. this algo takes roughly 1 minute
-    print . maximum . map (check . second S.toList) . toContentsGrp $ contents
+    print . maximum . map check . toContentsGrp $ contents
 
 
 -- toContentGrp "\"CARE\",\"RACE\"" -> [ ("ACER", ["CARE", "RACE"]) ]
-toContentsGrp :: String -> [(String, S.Set String)]
-toContentsGrp s = M.toList . foldl update' M.empty $ formatText s
+toContentsGrp :: String -> [(String, [String])]
+toContentsGrp s = map (second S.toList) . M.toList . foldl update' M.empty $ formatText s
 
 
 -- formatText "\"CARE\",\"RACE\"" -> ["CARE", "RACE"]
@@ -37,8 +37,7 @@ check (_, [x]) = Nothing
 check (r,  xs) = maximum [max' r perm comb | comb <- combs, perm <- perms]
     where
         combs = combinations 2 xs
-        perms = permutations' l "0123456789"
-        l = length r
+        perms = permutations' (length r) "0123456789"
 
 
 -- max' "ACER" "2169" ["CARE", "RACE"] -> Just 9216
