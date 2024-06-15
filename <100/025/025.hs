@@ -1,16 +1,18 @@
-main = print $ fibGenerator 1 1 3
+main :: IO ()
+main = print . snd . head . filter (isOK . fst) $ zip fibonacci [1..]
 
-target = 1000
 
-fibGenerator :: Integer -> Integer -> Integer -> Integer
-fibGenerator f1 f2 n
-    | l >= target = n
-    | otherwise   = fibGenerator f2 f3 $ n+1
-    where
-        f3 = f1 + f2
-        l  = numDigits f3
+fibonacci :: [Integer]
+fibonacci = [1, 1] ++ zipWith (+) fibonacci (tail fibonacci)
 
-numDigits :: Integer -> Integer
-numDigits n
-    | n < 10    = 1
-    | otherwise = (+1) . numDigits $ div n 10
+
+isOK :: Integer -> Bool
+isOK x = numDigits x >= targetDigits
+
+
+numDigits :: (Integral int, Show int) => int -> Int
+numDigits = length . show
+
+
+targetDigits :: Int
+targetDigits = 1000

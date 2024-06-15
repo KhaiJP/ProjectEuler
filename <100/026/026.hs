@@ -1,12 +1,11 @@
-import Data.List
-
-
 main :: IO ()
-main = print $ (1+) <$> maximumAt [ findPeriod n | n <- [1..upperLimit]]
+main = print . snd . maximum $ zip [findPeriod n | n <- [1..upperLimit]] [1..]
 
 
 findPeriod :: Integral t => t -> Int
-findPeriod = findPeriod' 1 [] 
+findPeriod = findPeriod' 1 []
+
+
 findPeriod' :: Integral t => t -> [t] -> t -> Int
 findPeriod' n rs m
   | r == 0      = 0
@@ -16,10 +15,6 @@ findPeriod' n rs m
     r   = n `mod` m
     n'  = r * 10
     rs' = r:rs
-
-
-maximumAt :: Ord a => [a] -> Maybe Int
-maximumAt list = elemIndex ( maximum list ) list
 
 
 upperLimit :: Integer

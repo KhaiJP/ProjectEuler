@@ -1,8 +1,9 @@
-import Data.Numbers.Primes
-import Data.List
-import Data.List.Unique
+import Data.Numbers.Primes ( primeFactors )
+import Data.List ( group )
+import Data.List.Unique ( sortUniq )
 
 
+main :: IO ()
 main = print $ total - multi
   where
     total     = upperLimit * (upperLimit+1) `div` 2
@@ -11,7 +12,7 @@ main = print $ total - multi
 
 
 isAbundant :: Int -> Bool
-isAbundant n = (properSum n) > n
+isAbundant n = properSum n > n
 
 
 properSum :: Int -> Int
@@ -40,5 +41,5 @@ primeSum xs =  (x^(l+1) - 1) `div` (x - 1)
           x = head xs
 
 
+upperLimit :: Int
 upperLimit = 28123
-

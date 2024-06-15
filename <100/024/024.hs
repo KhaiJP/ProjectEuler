@@ -1,14 +1,13 @@
-import Data.List
+import Data.List ( sort, permutations )
 
 
-main = print $ show' milth
+main :: IO ()
+main = putStrLn . concatMap show $ perms !! target
 
 
-show' :: [Int] -> String
-show' []     = ""
-show' (x:xs) = (show x) ++ (show' xs)
-
-milth  = perms!!target
+perms :: [[Int]]
 perms  = sort . permutations $ [0..9]
-target = 999999
 
+
+target :: Int
+target = 999999
