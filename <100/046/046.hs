@@ -1,4 +1,4 @@
-import Data.Numbers.Primes (isPrime)
+import Data.Numbers.Primes ( isPrime )
 
 
 main :: IO ()
@@ -7,6 +7,8 @@ main = print $ head [n | n <- [35,37..], not . isPrime $ n, not . enjoyGBConject
 
 enjoyGBConjecture :: Integral int => int -> Bool
 enjoyGBConjecture = enjoyGBConjecture' 1
+
+
 enjoyGBConjecture' :: Integral int => int -> int -> Bool
 enjoyGBConjecture' j n
     | candidate <= 0 = False

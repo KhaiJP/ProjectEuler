@@ -4,7 +4,7 @@ import Data.List ( sort )
 
 
 main :: IO ()
-main = putStrLn $ last . take 2 $ [concatMap show seq | a <- [1001..9999], d <- [2,4..(10000-2*a)], let seq = [a, a+d, a+2*d], check seq]
+main = putStrLn . last . take 2 $ [concatMap show seq | a <- [1001..9999], d <- [2,4..(10000-2*a)], let seq = [a, a+d, a+2*d], check seq]
 
 
 check :: [Int] -> Bool

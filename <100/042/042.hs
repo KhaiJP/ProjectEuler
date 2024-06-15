@@ -1,4 +1,4 @@
-import System.IO ( hGetContents, openFile, IOMode(ReadMode) )
+import System.IO ( hGetContents, openFile, IOMode(ReadMode), hClose )
 import Text.Regex ( mkRegex, splitRegex )
 import Data.Char ( isAsciiUpper, ord )
 
@@ -8,6 +8,7 @@ main = do
   handle   <- openFile filename ReadMode
   contents <- hGetContents handle
   print . length . filter isTriangle . map (convert . extractCapitals) . splitComma $ contents
+  hClose handle
 
 
 -- make "SKY" to 55 = 19 + 11 + 25
@@ -42,10 +43,15 @@ triangleProd :: Integral int => int -> int
 triangleProd n = n*(n + 1) `div` 2
 
 
+----------------------- supplemental -----------------------
 filename :: String
 filename   = "042.txt"
+
+
 splitComma :: String -> [String]
 splitComma = splitRegex (mkRegex ",")
+
+
 extractCapitals :: String -> String
 extractCapitals [] = []
 extractCapitals (c:cs)

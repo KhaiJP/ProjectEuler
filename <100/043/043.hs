@@ -1,4 +1,4 @@
-import Data.List
+import Data.List ( permutations )
 
 
 main :: IO ()
@@ -24,6 +24,8 @@ split s = [s]
 
 slices :: [[a] -> [a]]
 slices = map (\n -> slice n (n+2)) [1..7]
+
+
 slice :: Int -> Int -> [a] -> [a]
 slice from to xs = take (to - from + 1) (drop from xs)
 

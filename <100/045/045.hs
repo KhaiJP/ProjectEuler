@@ -11,6 +11,8 @@ isTriAndPent n = isTri && isPent
 
 isTriangle :: Integral int => int -> Bool
 isTriangle = hasInverse triangleProd
+
+
 isPentagonal :: Integral int => int -> Bool
 isPentagonal = hasInverse pentagonalProd
 
@@ -32,9 +34,14 @@ lowerBoundInverse' smaller bigger f n
         mid = (bigger + smaller) `div` 2
 
 
+----------------------- supplemental -----------------------
 triangleProd :: Integral int => int -> int
 triangleProd n = n * (n + 1) `div` 2
+
+
 pentagonalProd :: Integral int => int -> int
 pentagonalProd n = n * (3*n - 1) `div` 2
+
+
 hexagonalProd :: Integral int => int -> int
 hexagonalProd n = n * (2*n - 1)

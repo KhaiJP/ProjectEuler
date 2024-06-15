@@ -1,6 +1,6 @@
-import Data.Numbers.Primes
+import Data.Numbers.Primes ( primeFactors )
 import Data.List ( group )
-import Data.List.Unique (uniq) 
+import Data.List.Unique ( uniq ) 
 
 
 main :: IO ()
