@@ -27,7 +27,7 @@ update' val (x, y) m
 
 
 initMap :: Map
-initMap = M.insert (0, 0) 1 M.empty
+initMap = M.singleton (0, 0) 1
 
 
 limit :: Int

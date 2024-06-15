@@ -1,15 +1,35 @@
-import Data.List
+import qualified Data.Map.Strict as M
+type Memo = M.Map Int Int
 
 
-main = print $ fst $ last sortedCollatzs
+main :: IO ()
+main = print . snd . maximum . map invertPair . M.toList $ resultMap
 
-sortedCollatzs = sortOn snd collatzList
-collatzList    = take upper_limit [(n, collatz n) | n <- [1..]]
 
-collatz:: Int -> Int
-collatz n
-    | n <= 1        = n
-    | mod n 2 == 0  = (+1) . collatz $ div n 2
-    | otherwise     = (+1) . collatz $ 3*n + 1
+resultMap :: Memo
+resultMap = foldl updateCollatz M.empty [1..upperLimit]
 
-upper_limit = 10^6
+
+updateCollatz :: Memo -> Int -> Memo
+updateCollatz memo n = updateCollatz' memo n n 1
+
+
+updateCollatz' :: Memo -> Int -> Int -> Int -> Memo
+updateCollatz' memo target current len
+    | target == 1  = M.insert target len memo
+    | haveVisitied = M.insert target (len+logged) memo
+    | otherwise    = updateCollatz' memo target next' (len+1)
+    where
+        haveVisitied = M.member current memo
+        logged       = memo M.! current
+        next'        = if even current
+                        then current `div` 2
+                        else 3*current + 1
+
+
+invertPair :: (a, a) -> (a, a)
+invertPair (a, b) = (b, a)
+
+
+upperLimit :: Int
+upperLimit = 10^6-1

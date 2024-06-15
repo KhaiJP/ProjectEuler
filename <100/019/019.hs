@@ -1,4 +1,6 @@
+main :: IO ()
 main = print $ sum [1 | m <- [1..12], y <- [1901..2000], zeller 1 m y == 1]
+
 
 zeller :: Int -> Int -> Int -> Int
 zeller dd mm yy = h

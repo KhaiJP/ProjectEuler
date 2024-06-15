@@ -52,6 +52,6 @@ at f (r, c) = do
                 vec V.!? c
 
 
------------------------ supplimental -----------------------
+----------------------- supplemental -----------------------
 filename :: String
 filename = "018.txt"

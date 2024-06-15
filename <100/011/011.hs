@@ -36,14 +36,17 @@ check' f ref (r, c, d)
 at :: Filed -> (Row, Col) -> Maybe Int
 at f (r, c) = do
                 vec <- f V.!? r
-                ele <- vec V.!? c
-                return ele  
+                vec V.!? c  
 
 
------------------------ supplimental -----------------------
+----------------------- supplemental -----------------------
 drs :: V.Vector Direction
 drs = V.fromList [-1,  0,  1,  1]
+
+
 dcs :: V.Vector Direction
 dcs = V.fromList [ 1,  1,  1,  0]
+
+
 filename :: String
 filename = "011.txt"
