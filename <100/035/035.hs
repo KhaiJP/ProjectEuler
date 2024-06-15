@@ -1,8 +1,9 @@
-import Data.Numbers.Primes
+import Data.Numbers.Primes ( isPrime )
 
 
 main :: IO ()
 main = print $ length . filter (all isPrime) $ [rotGeneration n | n <- [1..upperLimit], isPrime n]
+
 
 -- 1234 -> [2341, 3412, 4123, 1234]
 rotGeneration :: Int -> [Int]

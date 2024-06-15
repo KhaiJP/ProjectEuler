@@ -1,4 +1,4 @@
-import Data.Numbers.Primes
+import Data.Numbers.Primes ( isPrime )
 
 
 main :: IO ()

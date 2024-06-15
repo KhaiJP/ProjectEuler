@@ -11,6 +11,8 @@ main = print $ sum . S.fromList $ twoXthree ++ oneXfour
 
 twoXthree :: [Integer]
 twoXthree = [nm | n <- [12..98], m <- [123..987], let nm = n*m, isOK n m nm]
+
+
 oneXfour :: [Integer]
 oneXfour  = [nm | n <- [1..9], m <- [1234..9876], let nm = n*m, isOK n m nm]
 

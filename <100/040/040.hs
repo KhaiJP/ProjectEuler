@@ -1,5 +1,5 @@
-import Data.Char
-import Data.List
+import Data.Char ( digitToInt )
+import Data.List ( intercalate )
 
 
 main :: IO ()

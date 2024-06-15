@@ -1,17 +1,17 @@
 import qualified Data.Map.Strict as M
-type Map = M.Map Int Int
+type Memo = M.Map Int Int
 
 
 main :: IO ()
 main = print $ findMaxValueKey perimeterToCounts
 
 
-perimeterToCounts :: Map
+perimeterToCounts :: Memo
 perimeterToCounts = countPerimeters M.empty 1 1
 
 
--- get Map whose keys are perimeter and keys are number of appearance of the key
-countPerimeters :: Map -> Int -> Int -> Map
+-- get Memo whose keys are perimeter and keys are number of appearance of the key
+countPerimeters :: Memo -> Int -> Int -> Memo
 countPerimeters mp a b
     | a == 1000       = mp
     | b > a           = countPerimeters mp  a' 1
@@ -26,14 +26,14 @@ countPerimeters mp a b
         enjoysCondition = perimeter <= 1000 && a^2+b^2 == c^2
 
 
--- if key is member of given Map, increment the corresponding value, else initialize by 1
+-- if key is member of given Memo, increment the corresponding value, else initialize by 1
 update' :: (Ord a, Integral b) => (b -> Maybe b) -> a -> M.Map a b -> M.Map a b
 update' f key mp = if M.member key mp
                     then M.update f key mp
                     else M.insert key 1 mp
 
 
--- find the key of Map whose value is the maximum among the values
+-- find the key of Memo whose value is the maximum among the values
 findMaxValueKey :: Integral b => M.Map a b -> Maybe a
 findMaxValueKey = findMaxValueKey' . M.toList 
 findMaxValueKey' :: Integral b => [(a, b)] -> Maybe a
