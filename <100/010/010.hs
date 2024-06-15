@@ -1,4 +1,9 @@
-import Data.Numbers.Primes
+import Data.Numbers.Primes ( primes )
 
-main = print $ sum $ takeWhile (<upper_limit) primes
-upper_limit = 2000000
+
+main :: IO ()
+main = print $ sum $ takeWhile (<upperLimit) primes
+
+
+upperLimit :: Int
+upperLimit = 2000000

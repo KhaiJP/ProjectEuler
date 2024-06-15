@@ -1,7 +1,8 @@
-import System.IO
-import Data.Char
+import System.IO ( hGetContents, openFile, IOMode(ReadMode) )
+import Data.Char ( digitToInt, isDigit )
 
 
+main :: IO ()
 main = do
   handle   <- openFile filename ReadMode
   contents <- hGetContents handle
@@ -9,7 +10,10 @@ main = do
   print $ solve digitsString
 
 
+solve :: String -> Int
 solve = solve' 0
+
+
 solve' :: Int -> String -> Int
 solve' n [] = n
 solve' n s  = solve' m cs
@@ -34,6 +38,10 @@ evalSeq s
   | otherwise         = product . map digitToInt $ take target s
 
 
+----------------------- supplemental -----------------------
+filename :: String
 filename = "008.txt"
-target   = 13
 
+
+target :: Int
+target   = 13

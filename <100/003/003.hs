@@ -1,24 +1,23 @@
-main = print $ findMaxDiv 1 target
+import Data.Numbers.Primes ( isPrime )
 
+
+main :: IO ()
+main = print $ findMaxDiv target
+
+
+findMaxDiv :: Int -> Int
+findMaxDiv n
+    | isPrime n = n
+    | otherwise = findMaxDiv' 1 2 n
+
+
+findMaxDiv':: Int -> Int -> Int -> Int
+findMaxDiv' i m n
+    | i > n       = m
+    | mod n i > 0 = findMaxDiv' (i+1) m n
+    | isPrime i   = findMaxDiv' (i+1) i (n `div` i)
+    | otherwise   = findMaxDiv' (i+1) m (n `div` i)
+
+
+target :: Int
 target:: Int = 600851475143
-
-
-findMaxDiv:: Int -> Int -> Int
-findMaxDiv i n
-    | i * i > n   = -1
-    | mod n i > 0 = findMaxDiv (i+1) n
-    | isPrime i   = max i $ findMaxDiv (i+1) n
-    | otherwise   = findMaxDiv (i+1) n
-
-
-isPrime:: Int -> Bool
-isPrime 2 = True
-isPrime n
-    | n < 2          = False
-    | (mod n 2) == 0 = False
-    | otherwise      = naive 3 n
-    where naive:: Int -> Int -> Bool
-          naive i n
-            | i * i > n    = True
-            | mod n i == 0 = False
-            | otherwise    = naive (i+2) n

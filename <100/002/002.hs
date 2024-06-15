@@ -1,13 +1,11 @@
-main = print $ fibSum f1 f2
+main :: IO ()
+main = print . sum . filter even . takeWhile (<upperLimit) $ fibSequence
 
 
-f1:: Int = 1
-f2:: Int = 2
-upper_limit:: Int = 4000000
+fibSequence :: [Int]
+fibSequence = [1,2] ++ zipWith (+) fibSequence (tail fibSequence)
 
 
-fibSum:: Int -> Int -> Int
-fibSum f1 f2
-    | f2 >= upper_limit = 0
-    | mod f2 2 == 0     = f2 + fibSum f2 (f1+f2)
-    | otherwise         =  0 + fibSum f2 (f1+f2)
+----------------------- supplemental -----------------------
+upperLimit :: Int
+upperLimit = 4*10^6
