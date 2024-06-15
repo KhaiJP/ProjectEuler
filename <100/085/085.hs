@@ -1,8 +1,8 @@
 import Data.List
 
 
-main = do
-    print . uncurry (*) . head . sortOn (\tp -> abs (target - rects tp)) $ patterns
+main :: IO ()
+main = print . uncurry (*) . head . sortOn (\tp -> abs (target - rects tp)) $ patterns
 
 
 patterns :: [(Int, Int)]
