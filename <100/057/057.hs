@@ -19,6 +19,7 @@ continuedFractions = [reproduceContinuedFraction $ take n cfSqrt2 | n <- [1..upp
 reproduceContinuedFraction :: [Integer] -> (Integer, Integer)
 reproduceContinuedFraction = reproduceContinuedFraction' (0, 1) . reverse 
 
+
 -- the body of the reproducing process
 reproduceContinuedFraction' :: (Integer, Integer) -> [Integer] -> (Integer, Integer)
 reproduceContinuedFraction' (n, d) []     = (d, n)
@@ -33,5 +34,7 @@ reproduceContinuedFraction' (n, d) (x:xs) = reproduceContinuedFraction' (n', d')
 
 cfSqrt2 :: [Integer]
 cfSqrt2 = 1 : repeat 2
+
+
 upperLimit :: Int
 upperLimit = 10^3

@@ -1,8 +1,8 @@
-import Data.Maybe (isNothing)
+import Data.Maybe ( isNothing )
 
 
 main :: IO ()
-main = print $ length . filter id $ [isLychrel n | n <- [1..upperLimit]]
+main = print . length . filter isLychrel $ [1..upperLimit]
 
 
 isLychrel :: Integer -> Bool

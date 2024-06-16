@@ -12,5 +12,4 @@ allIdentical (x:xs) = x == head xs && allIdentical xs
 
 
 xTo6xs :: Integer -> [Integer]
-xTo6xs x = map (\f -> f x) fs
-    where fs = map (*) [1..6]
+xTo6xs x = map (*x) [1..6]
