@@ -2,18 +2,17 @@ type Pell = (Int, Int)
 
 
 main :: IO ()
-main = print . reproduce . snd . head . filter isOK $ pellCandidates
+main = print . reproduce . snd . head . filter isOK $ pellSolutions
 
 
--- the Pell's equation having form x^2 - Dy^2 = -1, unlinke = +1,
--- not all the updates are truly the solutions
-pellCandidates :: [Pell]
-pellCandidates = scanl update answerPell2 [answerPell2 | _ <- [1..]]
+-- each element is a solution of Pell's equation; x^2 - Dy^2 = -1
+pellSolutions :: [Pell]
+pellSolutions = scanl nextSolution solutionPell2 [seed | _ <- [1..]]
 
 
 -- make another solution candidate of Pell's equation
-update :: Pell -> Pell -> Pell
-update (x1, y1) (x2, y2) = (x', y')
+nextSolution :: Pell -> Pell -> Pell
+nextSolution (x1, y1) (x2, y2) = (x', y')
     where
         x' = x1*x2 + 2*y1*y2
         y' = x1*y2 + x2*y1
@@ -21,12 +20,7 @@ update (x1, y1) (x2, y2) = (x', y')
 
 -- check if the candidate is really a solution, and num of total disks exceeds target=10^12
 isOK :: Pell -> Bool
-isOK pell = isPellSolution pell && exceedsTarget target pell
-
-
--- check if the arg is really a solution of Pell's equation
-isPellSolution :: Pell -> Bool
-isPellSolution (x, y) = x^2 - 2*y^2 == -1
+isOK = exceedsTarget target
 
 
 -- check if the num of total disks exceeds target=10^12
@@ -37,8 +31,12 @@ exceedsTarget thresh (x, y)
 
 
 ----------------------- supplemental -----------------------
-answerPell2 :: Pell
-answerPell2 = (1, 1)
+solutionPell2 :: Pell
+solutionPell2 = (1, 1)
+
+
+seed :: Pell
+seed = (3, 2)
 
 
 reproduce :: Int -> Int
