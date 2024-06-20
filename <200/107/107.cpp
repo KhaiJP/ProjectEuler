@@ -13,7 +13,7 @@ vector<int> E[45];
 map<P, int> W;
 
 
-void readfile(string filename){
+void readCSV(string filename){
   string line, val;
   ifstream file(filename);
 
