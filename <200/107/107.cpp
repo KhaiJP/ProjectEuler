@@ -81,7 +81,7 @@ int Kruskal(){
 
 int main(){
   string filename = "107.txt";
-  readfile(filename);
+  readCSV(filename);
 
   cout << total - Kruskal() << endl;
   return 0;
