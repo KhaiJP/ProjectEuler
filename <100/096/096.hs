@@ -77,7 +77,7 @@ makeInitLogger memo = filter (`M.notMember` memo) $ [(r, c) | r <- [0..8], c <- 
 solveSudoku' :: (Memo, Logger) -> [(Memo, Logger)]
 solveSudoku' (memo, logger)
     | null logger = [(memo, logger)]
-    | otherwise     = solveSudoku' =<< memos
+    | otherwise   = solveSudoku' =<< memos
     where
         memos = [(M.insert coord val memo, logger') | val <- [1 .. 9], isTrialAcceptable memo val coord]
         (coord:logger') = logger
