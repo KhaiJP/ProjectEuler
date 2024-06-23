@@ -2,15 +2,16 @@ import Data.Map.Strict as M ( (!?), notMember, toList, fromList, insert, Map )
 import Data.Set as S ( delete, fromList, notMember, null, toList, Set )
 import System.IO ( hGetContents, openFile, IOMode(ReadMode), hClose )
 import Text.Regex ( mkRegex, splitRegex )
+import Data.List ( groupBy )
 import Data.Char ( digitToInt )
-type Row = Int
-type Col = Int
-type Grid = Int -- id number of 3*3 box; 0 for upper-left and 8 for lower-right
-type Coord = (Row, Col)
-type IntSudoku = [[Int]]
-type Sudoku = M.Map Coord Int
+type Sudoku = [[Int]]
+type Memo   = M.Map Coord Int
 type Logger = S.Set Coord -- storing coordinates that are still empty
-type Pair = (Sudoku, Logger)
+type Coord  = (Row, Col)
+type Row    = Int
+type Col    = Int
+type Grid   = Int -- id number of 3*3 box; 0 for upper-left and 8 for lower-right
+
 
 {--
 a : (Row, Col, Grid) = (0, 0, 0)
@@ -37,8 +38,8 @@ main = do
     handle <- openFile filename ReadMode
     contents <- hGetContents handle
     let sudokuStrings   :: [[String]]     = map (init . splitLn) . tail $ splitGrid contents
-    let sudokuInts      :: [IntSudoku]    = map (map (map digitToInt)) sudokuStrings
-    let sudokuSolutions :: [Maybe Sudoku] = map (solveSudoku . toSudokuForm) sudokuInts
+    let sudokus         :: [Sudoku]       = map (map (map digitToInt)) sudokuStrings
+    let sudokuSolutions :: [Maybe Sudoku] = map solveSudoku sudokus
     let threeDigits     :: [Maybe Int]    = map (extractUpperLeft3 <$>) sudokuSolutions
     let answer          :: Maybe Int      = sum <$> sequenceA threeDigits
     print answer
@@ -47,45 +48,48 @@ main = do
 
 -- extract 3-digit number from sudoku
 extractUpperLeft3 :: Sudoku -> Int
-extractUpperLeft3 sudoku
-    | notSolvedYet = 0
-    | otherwise    = read . concatMap (show . snd) $ [a, b, c]
+extractUpperLeft3 sudoku = read . concatMap show $ [a, b, c]
     where
-        notSolvedYet = length sudokuL < 3
-        sudokuL      = M.toList sudoku
-        (a:b:c:xs)   = sudokuL
+        (a:b:c:xs) = r
+        (r:rest)   = sudoku 
 
+
+
+------------------------------------------------------------
+---------------------- solving sudoku ----------------------
+------------------------------------------------------------
 
 -- solve given sudoku puzzle; if there are multiple solutions then gives 1 of them, and if no solution there then gives Nothing
 solveSudoku :: Sudoku -> Maybe Sudoku
-solveSudoku sudoku = fst <$> safeHead solutions
+solveSudoku sudoku = toSudokuForm . fst =<< safeHead solutions
     where
         safeHead []     = Nothing
         safeHead (x:xs) = Just x
-        solutions = solveSudoku' (sudoku, makeInitLogger sudoku)
+        solutions = solveSudoku' (memo, makeInitLogger memo)
+        memo = toMemoForm sudoku
 
 
 -- gives the coordinates that are empty
-makeInitLogger :: Sudoku -> Logger
-makeInitLogger sudoku = S.fromList . filter (`M.notMember` sudoku) $ [(r, c) | r <- [0..8], c <- [0..8]]
+makeInitLogger :: Memo -> Logger
+makeInitLogger memo = S.fromList . filter (`M.notMember` memo) $ [(r, c) | r <- [0..8], c <- [0..8]]
 
 
 -- solve by dfs represented by monadic chain.
-solveSudoku' :: (Sudoku, Logger) -> [(Sudoku, Logger)]
-solveSudoku' (sudoku, logger)
-    | S.null logger = [(sudoku, logger)]
-    | otherwise     = sudokus >>= solveSudoku'
+solveSudoku' :: (Memo, Logger) -> [(Memo, Logger)]
+solveSudoku' (memo, logger)
+    | S.null logger = [(memo, logger)]
+    | otherwise     = solveSudoku' =<< memos
     where
-        sudokus = S.toList . S.fromList $
-                        [(M.insert coord val sudoku, S.delete coord logger) |
+        memos = S.toList . S.fromList $
+                        [(M.insert coord val memo, S.delete coord logger) |
                            let coord = head . S.toList $ logger,
                            val <- [1 .. 9],
-                           isTrialAcceptable sudoku val coord]
+                           isTrialAcceptable memo val coord]
 
 
--- check if the value 'val' at 'coord' is acceptable so far for Sudoku state 'sudoku'
-isTrialAcceptable :: Sudoku -> Int -> Coord -> Bool
-isTrialAcceptable sudoku val coord = all (isTrialAcceptable' sudoku val) [rows, cols, grid]
+-- check if the value 'val' at 'coord' is acceptable so far for Memo state 'sudoku'
+isTrialAcceptable :: Memo -> Int -> Coord -> Bool
+isTrialAcceptable memo val coord = all (isTrialAcceptable' memo val) [rows, cols, grid]
     where
         rows = getSameRowCoords  coord
         cols = getSameColCoords  coord
@@ -93,9 +97,9 @@ isTrialAcceptable sudoku val coord = all (isTrialAcceptable' sudoku val) [rows, 
 
 
 -- check if those 'coords' in sudoku do not contain 'val'; if contains then a contradiction occurs -> False
-isTrialAcceptable' :: Sudoku -> Int -> [Coord] -> Bool
-isTrialAcceptable' sudoku val coords = S.notMember (Just val) existingValues
-    where existingValues = S.fromList $ map (sudoku M.!?) coords
+isTrialAcceptable' :: Memo -> Int -> [Coord] -> Bool
+isTrialAcceptable' memo val coords = S.notMember (Just val) existingValues
+    where existingValues = S.fromList $ map (memo M.!?) coords
 
 
 -- get the grid number of the given coord; grid number is 0 for upper-left, 2 for upper-right, 6 for lower-left, and 8 for lower-right
@@ -127,13 +131,37 @@ getSameColCoords :: Coord -> [Coord]
 getSameColCoords (r, c) = [(r', c) | r' <- [0..8], r' /= r]
 
 
+-- convert sudoku :: Sudoku into memo :: M.Map (Row, Col) Int
+toMemoForm :: Sudoku -> Memo
+toMemoForm xxs = M.fromList . filter (\(_, a) -> a /= 0) $ [((r, c), xxs !! r !! c) | r <- [0..8], c <- [0..8]]
+
+
+-- convert memo :: M.Map (Row, Col) Int into Just sudoku :: Maybe Sudoku
+-- if memo is not valid solution then gives Nothing
+toSudokuForm :: Memo -> Maybe Sudoku
+toSudokuForm memo = reshape vals
+    where
+        vals :: [Int]
+        vals = map snd . M.toList $ memo
+
+
+-- convert 1-dimensional list, with length 81, into 9*9 2-dimensional list
+-- if the length /= 81 then gives Nothing
+reshape :: [Int] -> Maybe Sudoku
+reshape xs
+    | isBadList = Nothing
+    | otherwise = Just xxs
+    where
+        isBadList = length xxs' /= (9*9)
+        xxs' = zip xs . concatMap (replicate 9) $ [0..8]
+        xxs  = map (map fst) . groupBy (\(_, n) (_, m) -> n == m) $ xxs'
+
+
+
 ----------------------- supplemental -----------------------
-toSudokuForm :: IntSudoku -> Sudoku
-toSudokuForm xxs = M.fromList . filter (\(_, a) -> a /= 0) $ [((r, c), xxs !! r !! c) | r <- [0..8], c <- [0..8]]
-
-
-testSudoku :: IntSudoku
-testSudoku = [[0, 0, 3,   0, 2, 0,   6, 0, 0],
+testSudoku :: Sudoku
+testSudoku = [
+              [0, 0, 3,   0, 2, 0,   6, 0, 0],
               [9, 0, 0,   3, 0, 5,   0, 0, 1],
               [0, 0, 1,   8, 0, 6,   4, 0, 0],
 
@@ -143,7 +171,8 @@ testSudoku = [[0, 0, 3,   0, 2, 0,   6, 0, 0],
 
               [0, 0, 2,   6, 0, 9,   5, 0, 0],
               [8, 0, 0,   2, 0, 3,   0, 0, 9],
-              [0, 0, 5,   0, 1, 0,   3, 0, 0]]
+              [0, 0, 5,   0, 1, 0,   3, 0, 0]
+             ]
 
 
 splitGrid :: String -> [String]
