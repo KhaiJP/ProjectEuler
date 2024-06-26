@@ -1,7 +1,6 @@
 import Data.Ratio ( (%), denominator )
 import Data.List ( elem, notElem )
 import Data.Bifunctor ( Bifunctor, bimap )
-import qualified Data.Bifunctor as Data
 
 
 main :: IO ()
