@@ -1,5 +1,6 @@
 import Data.List ( permutations )
 type GeoList = [Int]
+type Chain = [Int]
 
 
 main :: IO ()
@@ -7,7 +8,7 @@ main = print . minimum . map sum $ goodChains
 
 
 -- each list consists of 4-digit numbers that enjoy the condition given.
-goodChains :: [[Int]]
+goodChains :: [Chain]
 goodChains = concatMap findGoodChains allListPermutations
 
 
@@ -18,7 +19,7 @@ allListPermutations = circularPerm geoNumberLists
 
 
 -- each l is tri nums or sq nums or ... or oct nums.
-findGoodChains :: [GeoList] -> [[Int]]
+findGoodChains :: [GeoList] -> [Chain]
 findGoodChains [l1, l2, l3, l4, l5, l6] = do
             a1 <- l1
             a2 <- filter (isChain a1) l2
