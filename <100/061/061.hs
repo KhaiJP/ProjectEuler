@@ -23,6 +23,12 @@ findGoodChains [l1, l2, l3, l4, l5, l6] = do
             return [a1, a2, a3, a4, a5, a6]
 
 
+-- find if n and m makes chain required in the problem; last 2 digits of n corresponds to first 2 digits of m.
+-- isChain 8128 2882 = True, isChain 2882 8281 = True, isChain 8128 8281 = False 
+isChain :: Int -> Int -> Bool
+isChain n m = n `mod` 100 == m `div` 100
+
+
 -- [triangle numbers, square numbers, ... , octagonal numbers]
 geoNumberLists :: [[Int]]
 geoNumberLists = [takeWhile (<10000) . dropWhile (<1000) . map f $ [1..] | f <- geoProds]
@@ -30,10 +36,6 @@ geoNumberLists = [takeWhile (<10000) . dropWhile (<1000) . map f $ [1..] | f <- 
 
 geoProds :: [Int -> Int]
 geoProds = [triangleProd, squareProd, pentagonalProd, hexagonalProd, heptagonalProd, octagonalProd]
-
-
-isChain :: Int -> Int -> Bool
-isChain n m = n `mod` 100 == m `div` 100
 
 
 triangleProd :: Int -> Int
