@@ -1,18 +1,24 @@
 import Data.List ( permutations )
+type GeoList = [Int]
 
 
 main :: IO ()
-main = print . minimum . concatMap (map sum . findGoodChains) $ allListPermutations
+main = print . minimum . map sum $ goodChains
+
+
+-- each list consists of 4-digit numbers that enjoy the condition given.
+goodChains :: [[Int]]
+goodChains = concatMap findGoodChains allListPermutations
 
 
 -- For example, head of this list, [tri nums, sq nums, pen nums, hex nums, hep nums, oct nums]
 -- corresponds to finding 6-number chains in order of [tri, sq, pen, hex, hep, oct].
-allListPermutations :: [[[Int]]]
-allListPermutations = permutations geoNumberLists
+allListPermutations :: [[GeoList]]
+allListPermutations = circularPerm geoNumberLists
 
 
 -- each l is tri nums or sq nums or ... or oct nums.
-findGoodChains :: [[Int]] -> [[Int]]
+findGoodChains :: [GeoList] -> [[Int]]
 findGoodChains [l1, l2, l3, l4, l5, l6] = do
             a1 <- l1
             a2 <- filter (isChain a1) l2
@@ -29,8 +35,12 @@ isChain :: Int -> Int -> Bool
 isChain n m = n `mod` 100 == m `div` 100
 
 
+circularPerm :: [a] -> [[a]]
+circularPerm (x:xs) = map (x:) . permutations $ xs
+
+
 -- [triangle numbers, square numbers, ... , octagonal numbers]
-geoNumberLists :: [[Int]]
+geoNumberLists :: [GeoList]
 geoNumberLists = [takeWhile (<10000) . dropWhile (<1000) . map f $ [1..] | f <- geoProds]
 
 
