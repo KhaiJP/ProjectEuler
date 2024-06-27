@@ -1,10 +1,10 @@
 import Data.List ( permutations )
-type GeoList = [Int]
-type Chain = [Int]
+type GeoList = [Int] -- list of triangle numbers, or list of square numbers, ... , or list of octagonal numbers
+type Chain   = [Int] -- list of 6 4-digit numbers that enjoy the condition given
 
 
 main :: IO ()
-main = print . minimum . map sum $ goodChains
+main = print . sum . head $ goodChains
 
 
 -- each list consists of 4-digit numbers that enjoy the condition given.
