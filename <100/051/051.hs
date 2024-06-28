@@ -11,10 +11,10 @@ isTarget :: Int -> Bool
 isTarget n = result
     where
         -- if length place /= 3k, then the replacements never contain 8 primes
-        result = or [check nString places | places <- map (findPlaces nString) ['0'..'9'], length places == 3]
+        result = or [check nString places | places <- map findPlaces ['0'..'9'], length places == 3]
         nString = show n
-        findPlaces :: String -> Char -> [Int]
-        findPlaces s t = filter (\n -> s!!n == t) [0..(numLength-1)]
+        findPlaces :: Char -> [Int]
+        findPlaces t = filter (\n -> nString!!n == t) [0..(numLength-1)]
 
 
 -- s = show num. places is digits to replace. is the numbers in such digits are not unique then False.
