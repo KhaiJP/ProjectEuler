@@ -16,9 +16,9 @@ isDigitCancelling pair
     | both10Mult = False
     | otherwise  = pair /= pair' && uncurry (%) pair == uncurry (%) pair'
     where
-        both10Mult = (n`mod`10 == 0) && (d`mod`10 == 0)
+        both10Mult = biand isMult10 isMult10 pair
         pair'      = digitReduction pair
-        (n, d)     = pair
+        isMult10 x = x `mod` 10 == 0
 
 
 digitReduction :: (Int, Int) -> (Int, Int)
