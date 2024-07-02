@@ -20,8 +20,8 @@ initRow = M.fromList [(n, 0) | n <- [0..maxWidth]]
 update' :: Row -> Position -> Row
 update' row x = M.update (\a -> Just (a+s+l)) x row
     where
-        s = sum $ map (\w -> fromMaybe 0 (Just (+1) <*> row M.!? (x-w))) tiles
-        l = if x > 0 then row M.! (x-1) else 0
+        s = sum $ map (\w -> fromMaybe 0 $ Just (+1) <*> row M.!? (x-w)) tiles
+        l = fromMaybe 0 $ row M.!? (x-1)
 
 
 tiles :: [Width]
