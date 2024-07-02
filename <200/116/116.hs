@@ -5,11 +5,11 @@ type Width    = Int
 
 
 main :: IO ()
-main = print . sum . map (M.! maxWidth) $ finalMaps
+main = print . sum . map (M.! maxWidth) $ finalRows
 
 
-finalMaps :: [Row]
-finalMaps = map (foldl update' initRow . makeCandidates) tiles
+finalRows :: [Row]
+finalRows = map (foldl update' initRow . makeCandidates) tiles
 
 
 initRow :: Row
