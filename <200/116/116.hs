@@ -21,9 +21,9 @@ initRow = M.fromList [(n, 0) | n <- [0..maxWidth]]
 
 
 update' :: Row -> (Position, Width) -> Row
-update' row (x, w) = M.update (\a -> Just (a+s+l)) x row
+update' row (x, w) = M.update (\a -> Just $ a+s+l) x row
     where
-        s = fromMaybe 0 $ Just (+1) <*> row M.!? (x-w)
+        s = maybe 0 (+1) $ row M.!? (x-w)
         l = fromMaybe 0 $ row M.!? (x-1)
 
 
