@@ -1,5 +1,5 @@
 import qualified Data.Map.Strict as M ( Map, update, (!), (!?), fromList )
-import Data.Maybe ( fromJust, fromMaybe )
+import Data.Maybe ( fromMaybe )
 type Row      = M.Map Position Int
 type Position = Int
 type Width    = Int
