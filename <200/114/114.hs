@@ -4,16 +4,20 @@ main = print . count $ target
 
 count :: Int -> Int
 count n
-    | n < 4     = memo !! n
+    | n < m     = memo !! n
     | otherwise = 2*a - b + c
     where
         a = memo !! (n-1)
         b = memo !! (n-2)
-        c = memo !! (n-4)
+        c = memo !! (n-m-1)
 
 
 memo :: [Int]
-memo = [1, 1, 1, 2] ++ [count n | n <- [4..]]
+memo = replicate m 1 ++ [2] ++ [count n | n <- [(m+1)..]]
+
+
+m :: Int
+m = 3
 
 
 target :: Int
