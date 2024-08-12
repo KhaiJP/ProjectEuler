@@ -11,6 +11,7 @@ const int upper_limit = MAX;
 int cnt[MAX+10];
 set<vector<int>> S;
 
+
 vector<int> Pythagorean_generator(int n, int m){
   // '' (n^2-m^2)^2 + (2nm)^2 = (n^2 + m^2)^2 '' yields Pythagorean set
   vector<int> v(4);
@@ -20,6 +21,7 @@ vector<int> Pythagorean_generator(int n, int m){
 
   return v;
 }
+
 
 int main(){
   for(int n = 1; n < 500; ++n)for(int m = 1; m < n; ++m){
@@ -38,6 +40,7 @@ int main(){
       p += v[3];
     }
   }
+
 
   // use excess memory area to make code simpler.
   priority_queue<pair<int, int>> q;
