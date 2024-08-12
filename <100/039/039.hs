@@ -1,70 +1,46 @@
-import qualified Data.Map.Strict as M
+import qualified Data.Map.Strict as M ( Map, fromList, toList, update )
+import Data.List ( maximumBy )
+import Control.Monad ( (<=<) )
+import Data.Maybe ( isNothing )
+type Triangle = (Int, Int, Int)
 type Memo = M.Map Int Int
 
 
 main :: IO ()
-main = print $ findMaxValueKey perimeterToCounts
+main = print . whichKeyGeneratesMaxValue . foldl update' initMemo $ [(m, n) | n <- [1..upperLimit], m <- [n..upperLimit]]
+    where initMemo = M.fromList [(p, 0) | p <- [1..upperLimit]]
 
 
-perimeterToCounts :: Memo
-perimeterToCounts = countPerimeters M.empty 1 1
-
-
--- get Memo whose keys are perimeter and keys are number of appearance of the key
-countPerimeters :: Memo -> Int -> Int -> Memo
-countPerimeters mp a b
-    | a == 1000       = mp
-    | b > a           = countPerimeters mp  a' 1
-    | enjoysCondition = countPerimeters mp' a  b'
-    | otherwise       = countPerimeters mp  a  b'
+update' :: Memo -> (Int, Int) -> Memo
+update' memo tp
+    | isBadTuple = memo
+    | otherwise  = foldl (flip $ M.update (Just . (+1))) memo ps
     where
-        a'  = a + 1
-        b'  = b + 1
-        c   = mySqrt $ a^2 + b^2
-        mp' = update' (\x -> Just (x+1)) perimeter mp
-        perimeter = a + b + c
-        enjoysCondition = perimeter <= 1000 && a^2+b^2 == c^2
+        isBadTuple = isNothing maybeP
+        maybeP     = perimeter <=< pythagoreanGenerator $ tp
+        ps         = takeWhile (<= upperLimit) [n*p | n <- [1..]]
+        Just p     = maybeP
 
 
--- if key is member of given Memo, increment the corresponding value, else initialize by 1
-update' :: (Ord a, Integral b) => (b -> Maybe b) -> a -> M.Map a b -> M.Map a b
-update' f key mp = if M.member key mp
-                    then M.update f key mp
-                    else M.insert key 1 mp
+pythagoreanGenerator :: (Int, Int) -> Maybe Triangle
+pythagoreanGenerator (m, n)
+    | m <= n       = Nothing
+    | gcd m n /= 1 = Nothing
+    | bothOdd      = Nothing
+    | otherwise    = Just (m^2 - n^2, 2*m*n, m^2 + n^2)
+    where bothOdd = odd m && odd n
 
 
--- find the key of Memo whose value is the maximum among the values
-findMaxValueKey :: Integral b => M.Map a b -> Maybe a
-findMaxValueKey = findMaxValueKey' . M.toList 
-findMaxValueKey' :: Integral b => [(a, b)] -> Maybe a
-findMaxValueKey' []  = Nothing
-findMaxValueKey' tps = findKey tps maxValue
-    where maxValue = getMaxValue tps
+perimeter :: Triangle -> Maybe Int
+perimeter (a, b, c)
+    | upperLimit < p = Nothing
+    | otherwise      = Just p
+    where p = a + b + c
 
 
--- find the key whose value is 'target'
-findKey :: Integral b => [(a, b)] -> b -> Maybe a
-findKey [] _            = Nothing
-findKey (tp:tps) target = if snd tp == target
-                                then Just (fst tp)
-                                else findKey tps target
+whichKeyGeneratesMaxValue :: Memo -> Int
+whichKeyGeneratesMaxValue = fst . maximumBy (\(_,a) (_,b) -> compare a b) . M.toList
 
 
--- find the maximum value of all the values of the list
-getMaxValue :: Integral b => [(a, b)] -> b
-getMaxValue = getMaxValue' 0
-getMaxValue' :: Integral b => b -> [(a, b)] -> b
-getMaxValue' m []       = m
-getMaxValue' m (tp:tps) = getMaxValue' m' tps
-    where m' = max m $ snd tp
-
-
--- generic sqrt function closed in Int -> mySqrt 16 = 4, mySqrt 15 = 3
-mySqrt :: Int -> Int
-mySqrt = mySqrt' 0 (10^9)
-mySqrt' :: Int -> Int -> Int -> Int
-mySqrt' smaller bigger target
-    | bigger - smaller == 1 = smaller
-    | mid^2 <= target       = mySqrt' mid bigger target
-    | otherwise             = mySqrt' smaller mid target
-    where mid = (bigger+smaller) `div` 2
+upperLimit :: Int
+upperLimit = 1000
