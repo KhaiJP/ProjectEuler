@@ -8,7 +8,7 @@ main = print . denominator . product . map (uncurry (%)) . take 4 . filter isDig
 
 
 candidates :: [(Int, Int)]
-candidates = [(n, d) | d <- [13..], n <- [11..(d-1)]]
+candidates = [(n, d) | d <- [13..99], n <- [11..(d-1)]]
 
 
 isDigitCancelling :: (Int, Int) -> Bool
