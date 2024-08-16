@@ -24,3 +24,40 @@ end
 function is_abundant(n :: Integer) :: Bool
   return n < proper_divisors_sum(n)
 end
+
+
+function solve(upper_limit :: Integer) :: Integer
+  d :: Dict{Integer, Integer} = Dict(j => 0 for j ∈ 1:upper_limit)
+  abundants = filter(is_abundant, 1:upper_limit)
+  N = length(abundants)
+  for i ∈ 1:N
+    for j ∈ i:N
+      ab1 = abundants[i]
+      ab2 = abundants[j]
+      sum_abs = ab1 + ab2
+      if upper_limit < sum_abs
+        break
+      end
+
+      d[sum_abs] += 1
+    end
+  end
+
+  result :: Integer = 0
+  for p ∈ d
+    if p[2] == 0
+      result += p[1]
+    end
+  end
+
+  return result
+end
+
+
+function main() :: Nothing
+  upper_limit :: Int = 28123
+  upper_limit |> solve |> println
+end
+
+
+@time main()
