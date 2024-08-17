@@ -20,7 +20,7 @@ multiset<int> prime_factors(int n){
 }
 
 
-multiset<int> collect_neumerators(int n, int r){
+multiset<int> collect_numbers(int n, int r){
   multiset<int> neumerators;
   for(int i = 0; i < r; ++i){
     auto s = prime_factors(n-i);
@@ -29,18 +29,6 @@ multiset<int> collect_neumerators(int n, int r){
     }
   }
   return neumerators;
-}
-
-
-multiset<int> collect_denominators(int r){
-  multiset<int> denominators;
-  for(int i = 2; i <= r; ++i){
-    auto s = prime_factors(i);
-    for(auto a : s){
-      denominators.insert(a);
-    }
-  }
-  return denominators;
 }
 
 
@@ -68,8 +56,8 @@ int multiply(multiset<int> s, int limit = 1000000){
 
 
 bool is_ok(int n, int r){
-  auto neumeratos = collect_neumerators(n, r);
-  auto denominators = collect_denominators(r);
+  auto neumeratos = collect_numbers(n, r);
+  auto denominators = collect_numbers(r, r);
   auto neumerators_ = reduction(neumeratos, denominators);
   int limit = 1e6;
   int result = multiply(neumerators_, limit);
