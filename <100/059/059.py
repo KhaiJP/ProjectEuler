@@ -10,9 +10,10 @@ def openfile(filename: str) -> list[int]:
 def xor_s(numbers: list[int], keys: list[int]) -> str:
     nl = len(numbers)
     kl = len(keys)
+    keys = [k + ord('a') for k in keys]
     result = ['' for _ in range(nl)]
     for i in range(nl):
-        result[i] = chr(numbers[i] ^ keys[i%kl] + ord('a'))
+        result[i] = chr(numbers[i] ^ keys[i%kl])
     
     return "".join(result)
 

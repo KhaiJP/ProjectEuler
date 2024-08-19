@@ -22,7 +22,7 @@ string xor_s(vector<int> &numbers, vector<int> keys){
   int nn = numbers.size(), kn = keys.size();
   string result;
   for(int i = 0; i < nn; ++i){
-    char c  = (numbers[i]) ^ (keys[i%kn]) + 'a';
+    char c  = (numbers[i]) ^ (keys[i%kn] + 'a');
     result.push_back(c);
   }
 
