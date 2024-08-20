@@ -76,4 +76,3 @@ end
 
 
 @time main()
-ß
