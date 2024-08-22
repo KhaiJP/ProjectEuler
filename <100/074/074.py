@@ -1,11 +1,11 @@
 import math
 
+
 def digit_factorial_sum(n: int) -> int:
     return sum(math.factorial(int(c)) for c in str(n))
 
 
 def solve(upper_limit: int) -> int:
-    memo = {}
     count = 0
     for i in range(1, upper_limit):
         s = set([])
