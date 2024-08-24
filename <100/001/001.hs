@@ -1,14 +1,14 @@
 main :: IO ()
-main = print $ sum [n | n <- [1..999], isMultOf3 n || isMultOf5 n]
+main = print $ sum [n | n <- [1..999], isMultipleOf3 n || isMultipleOf5 n]
 
 
-isMultOf3 :: Int -> Bool
-isMultOf3 = isMultOfM 3
+isMultipleOf3 :: Int -> Bool
+isMultipleOf3 = isMultipleOfM 3
 
 
-isMultOf5 :: Int -> Bool
-isMultOf5 = isMultOfM 5
+isMultipleOf5 :: Int -> Bool
+isMultipleOf5 = isMultipleOfM 5
 
 
-isMultOfM :: Int -> Int -> Bool
-isMultOfM m n = n `mod` m == 0
+isMultipleOfM :: Int -> Int -> Bool
+isMultipleOfM m n = n `mod` m == 0
