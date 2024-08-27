@@ -15,7 +15,7 @@ partition memo n
     where
         part   = modInt1e6 . sum $ zipWith (*) parts coeffs
         parts  = [memo M.! (n-k) | k <- pents]
-        pents  = takeWhile (<= n) [pentagonalProd k | k <- concat . map (\x -> [x, -x]) $ [1..]]
+        pents  = takeWhile (<= n) [pentagonalProd k | k <- concatMap (\x -> [x, -x]) [1..]]
         coeffs = cycle [1, 1, -1, -1]
         memo'  = M.insert n part memo
 
